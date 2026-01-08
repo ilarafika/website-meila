@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>website meila</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
@@ -82,12 +83,52 @@ button:hover {
     transform: translateY(0);
   }
 }
+@media (max-width: 600px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  button {
+    width: 90%;
+    margin: 10px auto;
+    display: block;
+  }
+}
+.btn {
+  background: linear-gradient(45deg, #8e2de2, #ff6a88);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 106, 136, 0.6);
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(142, 45, 226, 0.9);
+}
+#typing::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
 
   </style>
 
   <script>
   function sayHello() {
-    alert("I LOVE YOU ALWAYS 😄");
+    alert("I LOVE MY FAMILY ALWAYS 😄");
   }
   function ubahWarna() {
   let warna = ["pink", "lightblue", "lavender", "lightgreen", "lightyellow"];
@@ -107,9 +148,9 @@ function ubahTeks() {
 </head>
 <body>
 
-  <button onclick="toggleDark()">Dark Mode 🌙</button>
+  <button class="btn" onclick="toggleDark()">Dark Mode 🌙</button>
   <h1 id="judul">Ila Rafika</h1>
-  <p>Aku sedang belajar coding.TEMENIN YAK</p>
+  <p id="typing"></p>
   <div class="card">
     <img src="foto.jpg" class="foto">
   <h2>My Profile</h2>
@@ -123,10 +164,64 @@ function ubahTeks() {
 </div>
 
   
-  <button onclick="sayHello()">KLIK INI NANTI DAPET AKU EAAA</button>
-<button onclick="ubahWarna()">Ubah Warna</button>
-<button onclick="ubahTeks()">Ubah Teks</button>
+  <button class="btn" onclick="sayHello()">KLIK INI NANTI DAPET AKU EAAA</button>
+<button class="btn" onclick="ubahWarna()">Ubah Warna</button>
+<button class="btn" onclick="ubahTeks()">Ubah Teks</button>
+<script>
+  const text = "Aku lagi belajar coding dan ini SERU BANGET 🔥💻";
+  let index = 0;
 
+  function typeEffect() {
+    if (index < text.length) {
+      document.getElementById("typing").innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeEffect, 80);
+    }
+  }
+
+  typeEffect();
+</script>
+<script>
+  const texts = [
+    "Aku lagi belajar coding 🔥",
+    "Web ini aku buat sendiri 💻",
+    "Coding itu SERU 😆",
+    "Temenin aku belajar ya 💖"
+  ];
+
+  let textIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function typeLoop() {
+    const typing = document.getElementById("typing");
+    const currentText = texts[textIndex];
+
+    if (!isDeleting) {
+      typing.innerHTML = currentText.substring(0, charIndex + 1);
+      charIndex++;
+    } else {
+      typing.innerHTML = currentText.substring(0, charIndex - 1);
+      charIndex--;
+    }
+
+    let speed = isDeleting ? 60 : 100;
+
+    if (!isDeleting && charIndex === currentText.length) {
+      speed = 1500; // jeda sebelum hapus
+      isDeleting = true;
+    } 
+    else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      textIndex = (textIndex + 1) % texts.length;
+      speed = 500;
+    }
+
+    setTimeout(typeLoop, speed);
+  }
+
+  typeLoop();
+</script>
 
 
 </body>
