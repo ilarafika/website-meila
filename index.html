@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Website MEILA</title>
+
+  <style>
+    body {
+      background-color: whitesmoke;
+      font-family: Arial;
+      text-align: center;
+    }
+
+    h1 {
+      color: black;
+    }
+
+    p {
+      color: black;
+      font-size: 15px;
+    }
+    .card {
+  background-color: white;
+  width: 300px;
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+}
+
+.card h2 {
+  color: purple;
+}
+.foto {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+.sosial a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: purple;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.sosial a:hover {
+  background-color: pink;
+}
+  </style>
+
+  <script>
+  function sayHello() {
+    alert("I LOVE YOU ALWAYS 😄");
+  }
+  function ubahWarna() {
+    document.body.style.backgroundColor = "pink";
+  }
+  function ubahWarna() {
+  let warna = ["pink", "lightblue", "lavender", "lightgreen", "lightyellow"];
+  let random = Math.floor(Math.random() * warna.length);
+  document.body.style.backgroundColor = warna[random];
+}
+function ubahTeks() {
+    document.getElementById("judul").innerHTML = "Aku Bisa Coding 😎🔥";
+  }
+
+
+</script>
+
+
+</head>
+<body>
+
+  <h1 id="judul">Ila Rafika</h1>
+  <p>Aku sedang belajar coding.TEMENIN YAK</p>
+  <div class="card">
+    <img src="foto.jpg" class="foto">
+  <h2>My Profile</h2>
+  <p>Nama: Ila Rafika</p>
+  <p>Status: FRIENDZONE</p>
+  <div class="sosial">
+  <a href="https://www.instagram.com/ilaaarf__?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a>
+  <a href="https://wa.me/6283115757488" target="_blank">WhatsApp</a>
+</div>
+
+</div>
+
+  
+  <button onclick="sayHello()">KLIK INI NANTI DAPET AKU EAAA</button>
+<button onclick="ubahWarna()">Ubah Warna</button>
+<button onclick="ubahTeks()">Ubah Teks</button>
+
+
+
+</body>
+</html>
