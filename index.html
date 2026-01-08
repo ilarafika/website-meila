@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Website MEILA</title>
+  <title>website meila</title>
 
   <style>
     body {
@@ -11,7 +11,7 @@
     }
 
     h1 {
-      color: black;
+      color: blue;
     }
 
     p {
@@ -41,7 +41,7 @@
   display: inline-block;
   margin: 10px;
   padding: 10px 20px;
-  background-color: purple;
+  background-color: blueviolet;
   color: white;
   text-decoration: none;
   border-radius: 20px;
@@ -51,6 +51,16 @@
 .sosial a:hover {
   background-color: pink;
 }
+.dark {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.dark .card {
+  background-color: #2c2c2c;
+  color: white;
+}
+
   </style>
 
   <script>
@@ -61,14 +71,16 @@
     document.body.style.backgroundColor = "pink";
   }
   function ubahWarna() {
-  let warna = ["pink", "lightblue", "lavender", "lightgreen", "lightyellow"];
+  let warna = ["green", "lightblue", "lavender", "lightgreen", "lightyellow"];
   let random = Math.floor(Math.random() * warna.length);
   document.body.style.backgroundColor = warna[random];
 }
 function ubahTeks() {
-    document.getElementById("judul").innerHTML = "Aku Bisa Coding 😎🔥";
+    document.getElementById("judul").innerHTML = "you can call me meil";
   }
-
+  function toggleDark() {
+    document.body.classList.toggle("dark");
+  }
 
 </script>
 
@@ -76,6 +88,7 @@ function ubahTeks() {
 </head>
 <body>
 
+  <button onclick="toggleDark()">Dark Mode 🌙</button>
   <h1 id="judul">Ila Rafika</h1>
   <p>Aku sedang belajar coding.TEMENIN YAK</p>
   <div class="card">
