@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>website meila</title>
+  <title>Meila | Personal Website</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="foto.jpg">
 
@@ -241,6 +241,24 @@ input, textarea {
 .foto {
   cursor: pointer;
 }
+.admin-badge {
+  color: gold;
+  background: #2c2c2c;
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.action-buttons {
+  margin: 20px 0;
+}
+.quote-section {
+  margin: 25px auto;
+}
+.admin-badge {
+  box-shadow: 0 0 10px gold;
+}
 
   </style>
 
@@ -284,37 +302,40 @@ window.onload = function () {
 </head>
 <body>
 
-  <button class="btn" onclick="toggleDark()">Dark Mode 🌙</button>
   <h1 id="judul">MEILA NURIANI RAFIKA</h1>
-  <p id="adminBadge" style="display:none;color:red;font-weight:bold;">
+  <p id="adminBadge" class="admin-badge" style="display:none;">
 👑 ADMIN MODE AKTIF
 </p>
   <p id="clock"></p>
   <p id="visitor"></p>
   <p id="typing"></p>
-  <p id="quote"></p>
-<button class="btn" onclick="randomQuote()">💬 Random Quote</button>
+    <div class="action-buttons">
+  <button class="btn" onclick="sayHello()">pencet</button>
+  <button class="btn" onclick="ubahTeks()">Ubah Teks</button>
+  <button class="btn" onclick="toggleDark()">Dark Mode 🌙</button>
+  <button class="btn" onclick="gantiTema()">Ganti Tema 🌈</button>
+  <button class="btn" onclick="loginAdmin()">🔐 Mode Admin</button>
+  <button class="btn" id="logoutBtn" onclick="logoutAdmin()" style="display:none;">
+    🚪 Logout Admin
+  </button>
+  <button class="btn" id="musicBtn" onclick="toggleMusic()">🎵 Music OFF</button>
+</div>
   <div class="card">
     <img src="foto.jpeg" class="foto" onclick="openPhoto(this.src)">
   <h2>My Profile</h2>
-  <p>Nama: meila or ila</p>
+  <p>Nama: meila</p>
   <p>Status: mahasiswa upn veteran jatim</p>
   <div class="sosial">
   <a href="https://www.instagram.com/ilaaarf__?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a>
   <a href="https://wa.me/6283115757488" target="_blank">WhatsApp</a>
 </div>
 
+<div class="quote-section">
+  <p id="quote"></p>
+  <button class="btn" onclick="randomQuote()">💬 Random Quote</button>
 </div>
 
-  <button class="btn" onclick="sayHello()">pencet</button>
-<button class="btn" onclick="ubahTeks()">Ubah Teks</button>
-<button class="btn" onclick="toggleDark()">Dark Mode 🌙</button>
-<button class="btn" onclick="gantiTema()">Ganti Tema 🌈</button>
-<button class="btn" onclick="loginAdmin()">🔐 Mode Admin</button>
-<button class="btn" id="logoutBtn" onclick="logoutAdmin()" style="display:none;">
-🚪 Logout Admin
-</button>
-<button class="btn" id="musicBtn" onclick="toggleMusic()">🎵 Music OFF</button>
+</div>
 
 <script>
   const hour = new Date().getHours();
@@ -450,6 +471,10 @@ document.addEventListener("click", function(e) {
     const random = Math.floor(Math.random() * quotes.length);
     quote.innerHTML = quotes[random];
   }
+
+</script>
+<script>
+randomQuote();
 </script>
 
 <div class="card">
@@ -535,6 +560,8 @@ function loginAdmin() {
     localStorage.setItem("isAdmin", "true");
     alert("Admin mode aktif ✅");
     updateAdminUI();
+    document.querySelector('button[onclick="loginAdmin()"]').style.display =
+  isAdmin ? "none" : "inline-block";
   } else {
     alert("Password salah ❌");
   }
@@ -593,7 +620,8 @@ function showToast() {
   }, 2000);
 }
 </script>
-<p style="font-size:12px;color:gray;margin-top:30px;">
+<hr style="width:60%;margin-top:40px;">
+<p style="font-size:12px;color:gray;">
   © 2026 Made with 💖 by Meila
 </p>
 <div id="photoModal" onclick="closePhoto()">
