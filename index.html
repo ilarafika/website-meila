@@ -3,6 +3,7 @@
 <head>
   <title>website meila</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="foto.jpg">
 
   <style>
     body {
@@ -198,6 +199,14 @@ input, textarea {
   border: 1px solid #ccc;
   font-family: Arial;
 }
+#daftarPesan p {
+  background: #f3e8ff;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 8px;
+  font-size: 14px;
+  animation: muncul 0.5s ease;
+}
 
   </style>
 
@@ -207,9 +216,18 @@ input, textarea {
   }
   
 function ubahTeks() {
-    document.getElementById("judul").innerHTML = "you can call me meil";
+    document.getElementById("judul").innerHTML = "you can call me meila";
   }
   function toggleDark() {
+  // matiin semua tema warna
+  document.body.classList.remove(
+    "theme-pink",
+    "theme-blue",
+    "theme-purple",
+    "theme-green"
+  );
+  localStorage.removeItem("theme");
+
   document.body.classList.toggle("dark");
 
   if (document.body.classList.contains("dark")) {
@@ -218,6 +236,7 @@ function ubahTeks() {
     localStorage.removeItem("darkMode");
   }
 }
+
 window.onload = function () {
   if (localStorage.getItem("darkMode") === "on") {
     document.body.classList.add("dark");
@@ -261,6 +280,7 @@ window.onload = function () {
 <button class="btn" id="logoutBtn" onclick="logoutAdmin()" style="display:none;">
 🚪 Logout Admin
 </button>
+<button class="btn" id="musicBtn" onclick="toggleMusic()">🎵 Music OFF</button>
 
 <script>
   const hour = new Date().getHours();
@@ -330,12 +350,17 @@ window.onload = function () {
   }
 
   function gantiTema() {
-    document.body.classList.remove(...themes);
-    const theme = themes[themeIndex % themes.length];
-    document.body.classList.add(theme);
-    localStorage.setItem("theme", theme);
-    themeIndex++;
-  }
+  // matiin dark mode dulu
+  document.body.classList.remove("dark");
+  localStorage.removeItem("darkMode");
+
+  document.body.classList.remove(...themes);
+  const theme = themes[themeIndex % themes.length];
+  document.body.classList.add(theme);
+  localStorage.setItem("theme", theme);
+  themeIndex++;
+}
+
 </script>
 <script>
 document.addEventListener("click", function(e) {
@@ -428,8 +453,13 @@ function kirimPesan() {
     alert("Isi dulu yaa 💖");
     return;
   }
-
-  bukuTamu.push({ nama, pesan });
+if (nama.length > 20) {
+  alert("Nama kepanjangan 😅 maksimal 20 huruf yaa");
+  return;
+}
+const namaFix =
+  nama.trim().charAt(0).toUpperCase() + nama.trim().slice(1);
+bukuTamu.push({ nama: namaFix, pesan });
   localStorage.setItem("bukuTamu", JSON.stringify(bukuTamu));
 
   document.getElementById("nama").value = "";
@@ -486,16 +516,6 @@ function logoutAdmin() {
 updateAdminUI();
 </script>
 
-function logoutAdmin() {
-  isAdmin = false;
-  document.getElementById("adminBadge").style.display = "none";
-  document.getElementById("logoutBtn").style.display = "none";
-  alert("Admin logout 👋");
-  tampilkanPesan();
-}
-</script>
-
-
 <script>
   function updateClock() {
     const now = new Date();
@@ -539,6 +559,9 @@ function showToast() {
   }, 2000);
 }
 </script>
+<p style="font-size:12px;color:gray;margin-top:30px;">
+  © 2026 Made with 💖 by Meila
+</p>
 
 
 </body>
